@@ -1,0 +1,27 @@
+<html>
+<head>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="https://d3dy5gmtp8yhk7.cloudfront.net/2.2/pusher.min.js"></script>
+</head>
+<body>
+
+	<script type="text/javascript">
+        var pusher = new Pusher('cb65d0a7a72cd94adf1f');
+        var channel = pusher.subscribe('trade.3');
+        channel.bind('message', function(data) {
+	    $("#ticker").prepend('<p>'+data.trade.type + ' of ' + data.trade.quantity + ' Litecoins for '+ data.trade.total+ 'Bitcoins, for the price of ' +data.trade.price+' Bitcoins per Litecoin at '+ data.trade.datetime+'</p>')
+
+        });
+
+	</script>
+This page must reside on an SSL server for the script to work.
+<br>
+See <a href="https://www.cryptsy.com/pages/pushapi">https://www.cryptsy.com/pages/pushapi</a> for Cryptsy's documentation on their push API.
+<h2>Litecoin trades in Bitcoin at cryptsy.com, as they happen</h2>
+
+	<div id="ticker">
+	</div>
+
+</body>
+
+</html>
